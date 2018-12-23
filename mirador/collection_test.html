@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="build/mirador/css/mirador-combined.css">
+    <title>Mirador Viewer</title>
+    <style type="text/css">
+     #viewer {
+       width: 100%;
+       height: 100%;
+       position: fixed;
+     }
+    </style>
+  </head>
+  <body>
+    <div id="viewer"></div>
+
+    <script src="build/mirador/mirador.js"></script>
+    <script type="text/javascript" src="vvadapter.js"></script>
+    <script type="text/javascript" src="vvendpoint.js"></script>
+    <script type="text/javascript">
+      
+      API_URL_PREF = 'https://api.vedavaapi.org/py';
+      // API_URL_PREF = "http://localhost:5000";
+      
+     $(function() {
+       // Called without "let" or "var"
+       // so we can play with it in the browser
+       myMiradorInstance = Mirador({
+         "id": "viewer",
+         "layout": "1x1",
+		 "openManifestsPage": true,
+         "data": [
+            {"collectionUri": `${API_URL_PREF}/iiif_presentation/v1/demo/ullekhanam/collection/books.json`}
+          ],
+         "windowObjects": [],
+         "annotationEndpoint": {
+           "name":"Vedavaapi",
+           "module": "VedavaapiEndpoint",
+           "options": {
+            "imageApiBaseUri": `${API_URL_PREF}/iiif_image/v1`,
+            "presentationApiBaseUri": `${API_URL_PREF}/iiif_presentation/v1`,
+            "ullekhanamApiBaseUri": `${API_URL_PREF}/ullekhanam/v1`
+           }
+         },
+         "sidePanelOptions" : {
+           "tocTabAvailable": true,
+           "layersTabAvailable": true,
+           "searchTabAvailable": true,
+           "annotations" : true
+         },
+      });
+     });
+    </script>
+  </body>
+</html>
