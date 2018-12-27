@@ -1,12 +1,13 @@
 .mirador-container {
   .sidePanel {
     position:absolute;
-    width:280px;
+    width:270px;
     left: 0;
+    margin-right: 10px;
     bottom: 0;
     top:0;
-    background-color: @gray-ef;
-    border-right: 1px solid @light-gray;
+    background-color: @vedavaapi-white;
+    border: 1px solid @vedavaapi-light-grey;
     box-sizing: border-box;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -23,14 +24,13 @@
 
     .tab {
       padding: 8px;
-      margin-right: 2px;
+      margin-right: 4px;
       display: inline-block;
       cursor: pointer;
-      background: @gray-dd;
-      border-width: 1px 1px 0 1px;
-      border-color: @gray-b1;
-      border-style: solid;
-      color: @gray-66;
+      margin-bottom: 10px;
+      font-weight: 500;
+      background: @vedavaapi-light-grey;     
+      color: @vedavaapi-grey-black;
       font-size: .9em;
     }
 
@@ -40,12 +40,11 @@
     }
 
     .tab.selected {
-      font-weight: bold;
-      color: @black-33;
-      background: @gray-ef;
-      border-top-width: 1px;
-      border-top-style: solid;
-      border-top-color: deepskyblue;
+      font-weight: 500;
+      color:@vedavaapi-blue;
+      background: @vedavaapi-light-grey;
+      border-top-width: none;      
+      border-top-color: none;
     }
 
     .annotationListItem {
@@ -114,11 +113,11 @@
 
   .tabContentArea {
     position: relative;
-    width:270px;
+    width:250px;
     height:100%;
     float: left;
-    background-color: @gray-ef;
-    border-right: 1px solid @light-gray;
+    background-color: @vedavaapi-white;
+    border-right: 1px solid @vedavaapi-white;
     box-sizing: border-box;
     overflow: hidden;
     transition: all 0.3s ease;
