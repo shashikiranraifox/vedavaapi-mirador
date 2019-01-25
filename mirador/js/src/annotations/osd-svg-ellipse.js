@@ -1,10 +1,10 @@
 (function($) {
   $.Ellipse = function(options) {
     jQuery.extend(this, {
-      name: 'Ellipse',
-      logoClass: 'radio_button_unchecked',
-      idPrefix: 'ellipse_',
-      tooltip: 'ellipseTooltip'
+      // name: 'Ellipse',
+      // logoClass: 'radio_button_unchecked',
+      // idPrefix: 'ellipse_',
+      // tooltip: 'ellipseTooltip'
     }, options);
 
     this.init();

@@ -45,6 +45,8 @@
     },
 
     tabStateUpdated: function(data) {
+      console.log("searchTabe.js tabStateUpdated");
+
       if (data.tabs[data.selectedTabIndex].options.id === 'searchTab') {
         this.element.show();
       }

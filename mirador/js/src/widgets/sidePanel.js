@@ -37,8 +37,16 @@
            options : {
            available: _this.annotationsTabAvailable,
            id:'annotationsTab',
-           label:'Anno.'
+           label:'Annotations'
            }
+          },
+          {
+            name : 'sections',
+            options : {
+              available: _this.annotationsTabAvailable,
+              id:'sectionsTab',
+              label: 'Sections'
+            }
           },
           {
             name : 'search',
@@ -56,6 +64,7 @@
               label: i18next.t('tabTitleLayers')
             }
           },
+          
         ],
         width: 280,
         open: true
@@ -90,6 +99,16 @@
       }
       if (_this.annotationsTabAvailable) {
         new $.AnnotationsTab({
+          manifest: _this.manifest,
+          windowId: this.windowId,
+          appendTo: _this.element.find('.tabContentArea'),
+          state: _this.state,
+          eventEmitter: _this.eventEmitter
+        });
+      }
+
+      if (_this.annotationsTabAvailable) {
+        new $.SectionsTab({
           manifest: _this.manifest,
           windowId: this.windowId,
           appendTo: _this.element.find('.tabContentArea'),
@@ -182,13 +201,29 @@
       });
 
       _this.eventEmitter.subscribe('annotationListLoaded.' + _this.windowId, function(event) {
+        console.log("annotationListLoaded");
         var windowObject = _this.state.getWindowObjectById(_this.windowId);
+        console.log("sidePanel.js  subscribe annotationListLoaded");
         if (windowObject.annotationsAvailable[windowObject.viewType]) {
           if (_this.state.getWindowAnnotationsList(_this.windowId).length > 0) {
+            console.log("sidePanel.js  update  annotations");
             _this.update('annotations', true);
           }
         }
       });
+
+      _this.eventEmitter.subscribe('spatialAnnotationsListLoaded.' + _this.windowId, function(event) {
+        console.log("spatialAnnotationsListLoaded");
+        var windowObject = _this.state.getWindowObjectById(_this.windowId);
+        console.log("sidePanel.js  subscribe  spatialAnnotationsListLoaded");
+        if (windowObject.annotationsAvailable[windowObject.viewType]) {
+          if (_this.state.getWindowAnnotationsList(_this.windowId).length > 0) {
+            console.log("sidePanel.js  update  sections");
+            _this.update('sections', true);
+          }
+        }
+      });
+
 
       _this.eventEmitter.subscribe('currentCanvasIDUpdated.' + _this.windowId, function(event, newCanvasId) {
         _this.canvasID = newCanvasId;

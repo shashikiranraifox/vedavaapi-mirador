@@ -439,8 +439,8 @@
       '<div>',
       // need to add a delete, if permissions allow
       '<div class="button-container">',
-      '<a href="#cancel" class="cancel"><i class="fa fa-times-circle-o fa-fw"></i>{{t "cancel"}}</a>',
-      '<a href="#save" class="save"><i class="fa fa-database fa-fw"></i>{{t "save"}}</a>',
+      '<a href="#cancel" class="cancel"><i class="fa fa-times" style="margin-right: 3px;"></i>{{t "cancel"}}</a>',
+      '<a href="#save" class="save"><i class="fa fa-save" style="margin-right: 3px;"></i>{{t "save"}}</a>',
       '</div>',
       '</div>',
       '</form>'

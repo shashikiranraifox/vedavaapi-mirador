@@ -46,6 +46,8 @@
     },
 
     tabStateUpdated: function(visible) {
+      console.log("layersTab.js tabStateUpdated");
+
       var localState = this.localState();
       localState.visible =  visible;
 

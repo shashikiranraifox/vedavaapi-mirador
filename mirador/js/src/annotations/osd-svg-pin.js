@@ -1,10 +1,10 @@
 (function($) {
   $.Pin = function(options) {
     jQuery.extend(this, {
-      name: 'Pin',
-      logoClass: 'room',
-      idPrefix: 'pin_',
-      tooltip: 'pinTooltip',
+      // name: 'Pin',
+      // logoClass: 'room',
+      // idPrefix: 'pin_',
+      // tooltip: 'pinTooltip',
     }, options);
 
     this.init();

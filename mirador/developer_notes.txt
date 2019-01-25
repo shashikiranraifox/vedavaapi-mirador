@@ -1,0 +1,15 @@
+Jan 25th 2019
+
+[annotationCreated]
+window.js - Endpoints' create method called, ANNOTATIONS_LIST_UPDATED is called on succes method. Also getAnnotations() is defined and gets called here.
+saveController.js - receives ANNOTATIONS_LIST_UPDATED and send event to annotationsTab to update annotation list.
+catchEndpoint.js - create method is defined here
+vvendpoint.js - Vedvaaapi Annotations create method is called.
+[We have to give support for Spatial Annotation Support in vvendpoint.js]
+vvadapter.js - As Vedavaapi does not support Open Annotation Model, we use this adapter class to do the conversions so that Mirador rendering is supported. Note
+that Mirador supports Open Annotation Model so the need of Adapter
+osd-svg-overlay.js - onAnnotationCreated gets called here after annotion is created.
+
+
+
+
