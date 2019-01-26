@@ -256,6 +256,9 @@
         }
         _this.windowsAnnotationsLists[options.windowId] = options.annotationsList;
         _this.eventEmitter.publish('annotationListLoaded.' + options.windowId);
+        //TODO: (rfhack) test method for Rendering UI of Spatial Annotations.
+        _this.eventEmitter.publish('spatialAnnotationsListLoaded.' + options.windowId);
+      
       });
 
       _this.eventEmitter.subscribe('WINDOW_ELEMENT_UPDATED', function(event, options) {

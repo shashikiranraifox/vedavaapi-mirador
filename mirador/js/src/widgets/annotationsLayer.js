@@ -46,6 +46,12 @@
         _this.updateRenderer();
       });
 
+      _this.eventEmitter.subscribe('spatialAnnotationsListLoaded.' + _this.windowId, function(event) {
+        _this.annotationsList = _this.state.getWindowAnnotationsList(_this.windowId);
+        _this.updateRenderer();
+      });
+
+
       _this.eventEmitter.subscribe('slotLeave.' + _this.windowId, function(event, eventData) {
         if (_this.layerState.current == "display") {
           _this.layerState.defaultState();

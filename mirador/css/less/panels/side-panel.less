@@ -29,6 +29,7 @@
       cursor: pointer;
       margin-bottom: 10px;
       font-weight: 500;
+      font-family: sans-serif;
       background: @vedavaapi-light-grey;     
       color: @vedavaapi-grey-black;
       font-size: .9em;
@@ -37,10 +38,12 @@
     .tab:not(.selected):hover {
       background: @light-gray;
       color: @black-33;
+      font-family: sans-serif;
     }
 
     .tab.selected {
       font-weight: 500;
+      font-family: sans-serif;
       color:@vedavaapi-blue;
       background: @vedavaapi-light-grey;
       border-top-width: none;      
@@ -110,6 +113,10 @@
     opacity:0;
     border:none;
   }
+  .annotations-delete-icon{
+    height: 40px;
+    // float: right;
+  }
 
   .tabContentArea {
     position: relative;
@@ -125,6 +132,26 @@
   }
 
   .annotationsPanel {
+    margin: 0;
+    margin-bottom: 10px;
+    padding-bottom: 100px;
+    overflow-y: scroll;
+    width: 280px;
+    padding-right: 10px;
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0px;
+    bottom: 0;
+    list-style-type: none;
+    font-size: 75%;
+
+    ul {
+      padding:0;
+      margin:0;
+     }
+   }
+   .sectionsPanel {
     margin: 0;
     margin-bottom: 10px;
     padding-bottom: 100px;

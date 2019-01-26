@@ -1,10 +1,10 @@
 (function($) {
   $.Polygon = function(options) {
     jQuery.extend(this, {
-      name: 'Polygon',
-      logoClass: 'timeline',
-      idPrefix: 'rough_path_',
-      tooltip: 'polygonTooltip'
+      // name: 'Polygon',
+      // logoClass: 'timeline',
+      // idPrefix: 'rough_path_',
+      // tooltip: 'polygonTooltip',
     }, options);
 
     this.init();

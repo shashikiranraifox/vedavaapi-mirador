@@ -31,21 +31,26 @@
       jQuery.extend(true, this.tabState, state);
 
       if (!initial) {
+        console.log("tabs.js state tabState: " + JSON.stringify( this.tabState));
         _this.eventEmitter.publish('tabStateUpdated.' + this.windowId, this.tabState);
       }
 
       return this.tabState;
     },
     tabSelected: function(index) {
+      console.log("tabs.js tabSelected index: " + index);
+      
       var state = this.state();
       state.selectedTabIndex = index;
       this.state(state);
     },
     getTemplateData: function() {
+      console.log("getTemplateData");
       return {
         annotationsTab: this.state().annotationsTab,
         tocTab: this.state().tocTab,
-        searchTab: this.state().searchTab
+        searchTab: this.state().searchTab,
+        sectionsTab:this.state().sectionsTab
       };
     },
     listenForActions: function() {

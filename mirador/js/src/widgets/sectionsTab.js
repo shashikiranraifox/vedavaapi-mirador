@@ -1,6 +1,6 @@
 (function($) {
 
-    $.AnnotationsTab = function(options) {
+    $.SectionsTab = function(options) {
         jQuery.extend(true, this, {
             element:           null,
             appendTo:          null,
@@ -13,13 +13,13 @@
         this.init();
     };
 
-    $.AnnotationsTab.prototype = {
+    $.SectionsTab.prototype = {
         init: function() {
             var _this = this;
             this.windowId = this.windowId;
 
             this.localState({
-                id: 'annotationsTab',
+                id: 'sectionsTab',
                 visible: this.visible,
                 annotationLists: [],
                 selectedList: null,
@@ -34,27 +34,27 @@
         },
         localState: function(state, initial) {
             var _this = this;
-            if (!arguments.length) return this.annoTabState;
-            this.annoTabState = state;
+            if (!arguments.length) return this.secTabState;
+            this.secTabState = state;
 
             if (!initial) {
-                _this.eventEmitter.publish('annotationsTabStateUpdated.' + this.windowId, this.annoTabState);
+                _this.eventEmitter.publish('sectionsTabStateUpdated.' + this.windowId, this.secTabState);
             }
 
-            return this.annoTabState;
+            return this.secTabState;
         },
         loadTabComponents: function() {
             var _this = this;
 
         },
         tabStateUpdated: function(visible) {
-            console.log("annotationsTab.js: tabStateUpdated");
+            console.log("sectionsTab.js: tabStateUpdated");
             localState = this.localState();
             localState.visible = visible;
             this.localState(localState);
             visible ? this.element.show() : this.element.hide();
         },
-        annotationListLoaded: function() {
+        spatialAnnotationsListLoaded: function() {
             var _this = this,
             annotationSources = [],
             localState = this.localState();
@@ -116,27 +116,27 @@
         },
         toggle: function() {},
         listenForActions: function() {
-
-            console.log("annotationsTab.js listenForActions");
+            console.log("sectionsTab.js listenForActions");
+            
             var _this = this;
 
-            _this.eventEmitter.subscribe('annotationsTabStateUpdated.' + _this.windowId, function(_, data) {
+            _this.eventEmitter.subscribe('sectionsTabStateUpdated.' + _this.windowId, function(_, data) {
                 _this.render(data);
             });
 
             _this.eventEmitter.subscribe('tabStateUpdated.' + _this.windowId, function(_, data) {
-                _this.tabStateUpdated(data.tabs[data.selectedTabIndex].options.id == 'annotationsTab');
+                _this.tabStateUpdated(data.tabs[data.selectedTabIndex].options.id == 'sectionsTab');
             });
 
 
-            _this.eventEmitter.subscribe('annotationListLoaded.' + _this.windowId, function(_, data) {
-                _this.annotationListLoaded();
+            _this.eventEmitter.subscribe('spatialAnnotationsListLoaded.' + _this.windowId, function(_, data) {
+                _this.spatialAnnotationsListLoaded();
             });
 
             _this.eventEmitter.subscribe('currentCanvasIDUpdated.' + _this.windowId, function(event) {
 
-            _this.eventEmitter.subscribe('annotationListLoaded.' + _this.windowId, function(event) {
-                _this.annotationListLoaded();
+            _this.eventEmitter.subscribe('spatialAnnotationsListLoaded.' + _this.windowId, function(event) {
+                _this.spatialAnnotationsListLoaded();
             });
 
               _this.selectList(_this.localState().selectedList);
@@ -178,7 +178,7 @@
             if (!this.element) {
                 this.element = jQuery(_this.template(templateData)).appendTo(_this.appendTo);
             } else {
-                jQuery(_this.appendTo).find(".annotationsPanel").remove();
+                jQuery(_this.appendTo).find(".sectionsPanel").remove();
                 this.element = jQuery(_this.template(templateData)).appendTo(_this.appendTo);
             }
             _this.bindEvents();
@@ -191,7 +191,7 @@
             }
         },
         template: $.Handlebars.compile([
-            '<div class="annotationsPanel">',
+            '<div class="sectionsPanel">',
             '<ul class="annotationSources">',
             '{{#each annotationSources}}',
             //'<li class="annotationListItem {{#if this.selected}}selected{{/if}} {{#if this.focused }}focused{{/if}}" data-id="{{this.annotationSource.chars}}">',

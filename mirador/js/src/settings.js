@@ -117,7 +117,7 @@
     ],
 
     'availableAnnotationDrawingTools': [
-       'Rectangle', 'Ellipse', 'Freehand', 'Polygon', 'Pin'
+       'Rectangle','Spatial', 'Ellipse', 'Freehand', 'Polygon', 'Pin'
     ],
     'availableAnnotationStylePickers':[
         'StrokeColor','FillColor','StrokeType'
