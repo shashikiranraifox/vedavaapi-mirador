@@ -513,6 +513,10 @@
         mergedConfig.overlayAvailable = mergedConfig.overlay;
         delete mergedConfig.overlay;
       }
+      if (mergedConfig.hasOwnProperty('commentOverlay')) {
+        mergedConfig.overlayAvailable = mergedConfig.commentOverlay;
+        delete mergedConfig.commentOverlay;
+      }
       newWindow = new $.Window(mergedConfig);
       _this.windows.push(newWindow);
 

@@ -60,6 +60,86 @@
     word-wrap: break-word;
     font-size: 90%;
   }
+  .commentOverlay {
+    display: none;
+    position: absolute;
+    right: 0;
+    padding: 20px;
+    top: 0;
+    box-sizing: border-box;
+    background-color: @vedavaapi-light-grey;
+    z-index: 5;
+    width: 30%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 80%;
+    word-wrap: break-word;
+    font-size: 90%;
+
+    .title{
+      color: @vedavaapi-black;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    hr{
+      margin-top: 4px;
+    }
+    .comments-buttons{
+      width: 100%;
+      .annotator-btn{
+        width: 170px;
+        background-color: @vedavaapi-white;
+        color: @vedavaapi-grey-black;
+        border: none;
+        font-size: 14px;
+        font-family: sans-serif;
+        padding: 4px;
+      }
+      .learner-btn{
+        width: 170px;
+        background-color: @vedavaapi-white;
+        color: @vedavaapi-grey-black;
+        float: right;
+        font-size: 14px;
+        font-family: sans-serif;
+        border: none;
+        padding: 4px;
+      }
+    }
+    .comment-text{
+      p{
+        font-size: 12px;
+        font-family: sans-serif;
+        font-weight: 500;
+        margin-top: 20px;
+        color: @vedavaapi-grey-black;
+      }
+    }
+    .comment-details{
+      text-overflow: ellipsis; 
+      white-space: nowrap; 
+      overflow: hidden; 
+      width: 212px;
+      margin-top: 20px;
+      p{
+        margin-bottom: 4px;
+        margin-top: 0px;
+        color: #000;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        span{
+          width: 250px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: #000000;
+        }
+      }
+    }
+
+  }
 
   .thumbnail-view, .image-view, .book-view, .scroll-view {
     height: 100%;

@@ -22,18 +22,22 @@
       focusOverlaysAvailable: {
         'ThumbnailsView': {
           'overlay' : {'MetadataView' : false},
+          'commentOverlay' : {'CommentdataView' : false},
           'bottomPanel' : {'' : false}
         },
         'ImageView': {
           'overlay' : {'MetadataView' : false},
+          'commentOverlay' : {'CommentdataView' : false},
           'bottomPanel' : {'ThumbnailsView' : true}
         },
         'ScrollView': {
           'overlay' : {'MetadataView' : false},
+          'commentOverlay' : {'CommentdataView' : false},
           'bottomPanel' : {'' : false}
         },
         'BookView': {
           'overlay' : {'MetadataView' : false},
+          'commentOverlay' : {'CommentdataView' : false},
           'bottomPanel' : {'ThumbnailsView' : true}
         }
       },
@@ -47,6 +51,7 @@
       },
       bottomPanel: null, //the actual module for the bottom panel
       overlay: null,
+      commentOverlay : null,
       annoEndpointAvailable : false,
       iconClasses: {
         "ImageView" : "fa fa-photo fa-lg fa-fw",
@@ -154,6 +159,13 @@
         });
       } else {
         templateData.MetadataView = true;
+      }
+      if (typeof this.overlayAvailable !== 'undefined' && !this.overlayAvailable) {
+        jQuery.each(this.focusOverlaysAvailable, function(key, value) {
+          _this.focusOverlaysAvailable[key].commentOverlay = {'' : false};
+        });
+      } else {
+        templateData.CommentdataView = true;
       }
 
       //determine if any buttons should be hidden in template
@@ -709,6 +721,23 @@
       //and then do toggling for current focus
       this.togglePanels('overlay', !currentState, 'MetadataView', focusState);
     },
+    togglecommentMetadataOverlay: function(focusState) {
+      var _this = this;
+      var currentState = this.focusOverlaysAvailable[focusState].commentOverlay.CommentdataView;
+      if (currentState) {
+        this.element.find('.mirador-icon-commentmetadata-view').removeClass('selected');
+      } else {
+        this.element.find('.mirador-icon-commentmetadata-view').addClass('selected');
+      }
+      //set overlay for all focus types to same value
+      jQuery.each(this.focusOverlaysAvailable, function(focusType, options) {
+        if (focusState !== focusType) {
+          this.commentOverlay.CommentdataView = !currentState;
+        }
+      });
+      //and then do toggling for current focus
+      this.togglePanels('commentOverlay', !currentState, 'CommentdataView', focusState);
+    },
 
     toggleFocus: function(focusState, imageMode) {
       var _this = this;
@@ -887,7 +916,12 @@
       if (this.focusOverlaysAvailable[this.viewType].overlay.MetadataView) {
         this.element.find('.mirador-icon-metadata-view').addClass('selected');
       }
+
+      if (this.focusOverlaysAvailable[this.viewType].commentOverlay.CommentdataView) {
+        this.element.find('.mirador-icon-commentmetadata-view').addClass('selected');
+      }
     },
+    
 
     /*
      Merge all annotations for current image/canvas from various sources
@@ -1003,6 +1037,10 @@
         _this.toggleMetadataOverlay(_this.viewType);
       });
 
+      this.element.find('.mirador-icon-commentmetadata-view').on('click', function() {
+        _this.togglecommentMetadataOverlay(_this.viewType);
+      });
+
       this.element.find('.mirador-icon-toc').on('click', function() {
         _this.sidePanelVisibility(!_this.sidePanelVisible, '0.3s');
       });
@@ -1040,6 +1078,11 @@
       '<div class="window-manifest-navigation">',
       '{{#if userButtons}}',
       '{{windowuserbtns userButtons}}',
+      '{{/if}}',
+      '{{#if CommentdataView}}',
+      '<a href="javascript:;" class="mirador-btn mirador-icon-commentmetadata-view mirador-tooltip" role="button" title="Comment" aria-label="{{t "metadataTooltip"}}">',
+      '<i class="material-icons">comment</i>',
+      '</a>',
       '{{/if}}',
       '<a href="javascript:;" class="mirador-btn mirador-icon-view-type" role="button" title="{{t "viewTypeTooltip"}}" aria-label="{{t "viewTypeTooltip"}}">',
       '<i class="{{currentFocusClass}}"></i>',
@@ -1106,6 +1149,7 @@
       '</div>',
       '{{/if}}',
       '<div class="overlay"></div>',
+      '<div class="commentOverlay"></div>',
       '<div class="view-container {{#unless sidePanel}}focus-max-width{{/unless}}">',
       '<div class="bottomPanel">',
       '</div>',

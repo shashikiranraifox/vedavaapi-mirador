@@ -60,6 +60,7 @@
       },
       "sidePanelVisible" : true, //whether or not to make the side panel visible in this window on load. This setting is dependent on sidePanel being true
       "overlay" : true, //whether or not to make the metadata overlay available/visible in this window
+      "commentOverlay" : true,
       "canvasControls": { // The types of controls available to be displayed on a canvas
         "annotations" : {
           "annotationLayer" : true, //whether or not to make annotation layer available in this window
@@ -117,7 +118,7 @@
     ],
 
     'availableAnnotationDrawingTools': [
-       'Rectangle','Spatial', 'Ellipse', 'Freehand', 'Polygon', 'Pin'
+       'Rectangle','Spatial','Comment', 'Ellipse', 'Freehand', 'Polygon', 'Pin'
     ],
     'availableAnnotationStylePickers':[
         'StrokeColor','FillColor','StrokeType'
